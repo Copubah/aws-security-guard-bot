@@ -20,22 +20,29 @@ It listens to GuardDuty findings, routes them through EventBridge,and triggers a
 - Infrastructure fully managed with Terraform
 - Modular and extensible Lambda functions in Python
 
+ 
+## Architecture Diagram
+          +----------------+
+          |   GuardDuty    |
+          +-------+--------+
+                  |
+                  v
+          +----------------+
+          |  EventBridge   |
+          +-------+--------+
+                  |
+                  v
+          +----------------+
+          |    Lambda      |
+          |  (Python Bot)  |
+          +-------+--------+
+                  |
+         +--------+--------+
+         | Quarantine EC2  |
+         |  + Notify via   |
+         |      SNS        |
+         +----------------+
 
- ## aws-security-guard-bot/
-│
-├── terraform/
-│   ├── main.tf              # Main Terraform configuration
-│   ├── variables.tf         # Input variables
-│   ├── outputs.tf           # Outputs after apply
-│   ├── providers.tf         # AWS provider definition
-│   ├── lambda/
-│   │   ├── lambda_function.py   # Security automation logic
-│   │   ├── requirements.txt     # Lambda dependencies
-│   │   └── package.sh           # Packaging script
-│
-├── .gitignore
-├── LICENSE
-├── README.md
 
 
 
